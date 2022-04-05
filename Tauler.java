@@ -10,6 +10,7 @@ public class Tauler {
         this.tauler = new char[7][8];
         this.casella = new Casella();
 
+        initTablero();
     }
 
     private void initTablero() {

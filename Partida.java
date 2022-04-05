@@ -25,15 +25,25 @@ public class Partida {
 
         int posicio;
 
-        while ( !jugadorUn.esGuanyador() || !jugadorDos.esGuanyador() ) {
+        while ( !jugadorUn.esGuanyador() && !jugadorDos.esGuanyador() ) {
 
             posicio = EntradaSortida.triaPosicio(jugadorUn);
-            if (comprovaSiEsGuanyador(jugadorUn, posicio))
+            if (comprovaSiEsGuanyador(jugadorUn, posicio)) {
+                tauler.imprimirTaula();
                 continue;
+            }
+
+
+            tauler.imprimirTaula();
+
 
             posicio = EntradaSortida.triaPosicio(jugadorDos);
-            if (comprovaSiEsGuanyador(jugadorDos, posicio))
+            if (comprovaSiEsGuanyador(jugadorDos, posicio)) {
+                tauler.imprimirTaula();
                 continue;
+            }
+
+            tauler.imprimirTaula();
 
         }
 
@@ -42,7 +52,7 @@ public class Partida {
 
     private boolean comprovaSiEsGuanyador(Jugador jugador, int posicio) {
 
-        return tauler.comprovaTauler(posicio, jugador.getFitxa().getCaraFitxa()) && jugador.esGuanyador();
+        return tauler.comprovaTauler(posicio, jugador.getFitxa().getCaraFitxa()) && jugador.haGuanyat(true);
 
     }
 

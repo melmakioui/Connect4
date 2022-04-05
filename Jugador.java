@@ -25,8 +25,8 @@ public class Jugador {
         return guanyador;
     }
 
-    public void haGuanyat(boolean guanyador) {
-        this.guanyador = true;
+    public boolean haGuanyat(boolean guanyador) {
+        return this.guanyador = true;
     }
 
     public Fitxa getFitxa() {

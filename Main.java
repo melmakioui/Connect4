@@ -13,6 +13,8 @@ public class Main {
 
         Tauler tauler = new Tauler();
 
+        Partida partida = new Partida(jugadorUn, jugadorDos, tauler);
+
     }
 
 
