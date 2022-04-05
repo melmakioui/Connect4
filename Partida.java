@@ -28,10 +28,19 @@ public class Partida {
         while ( !jugadorUn.esGuanyador() || !jugadorDos.esGuanyador() ) {
 
             posicio = EntradaSortida.triaPosicio(jugadorUn);
+            comprovaSiEsGuanyador(jugadorUn, posicio);
 
-
+            posicio = EntradaSortida.triaPosicio(jugadorDos);
+            comprovaSiEsGuanyador(jugadorDos, posicio);
 
         }
+
+    }
+
+
+    private boolean comprovaSiEsGuanyador(Jugador jugador, int posicio) {
+
+        return tauler.comprovaTauler(posicio, jugador.getFitxa().getCaraFitxa()) && jugador.esGuanyador();
 
     }
 
