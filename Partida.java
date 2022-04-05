@@ -28,10 +28,12 @@ public class Partida {
         while ( !jugadorUn.esGuanyador() || !jugadorDos.esGuanyador() ) {
 
             posicio = EntradaSortida.triaPosicio(jugadorUn);
-            comprovaSiEsGuanyador(jugadorUn, posicio);
+            if (comprovaSiEsGuanyador(jugadorUn, posicio))
+                continue;
 
             posicio = EntradaSortida.triaPosicio(jugadorDos);
-            comprovaSiEsGuanyador(jugadorDos, posicio);
+            if (comprovaSiEsGuanyador(jugadorDos, posicio))
+                continue;
 
         }
 
