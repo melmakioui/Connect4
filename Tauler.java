@@ -31,11 +31,10 @@ public class Tauler {
         }
     }
 
-    
 
-    public boolean comprovaTaula (int columna, char fitxa) {
+    public boolean comprovaTaula(int columna, char fitxa) {
 
-        int fila = colocaFitxa(columna,fitxa);
+        int fila = colocaFitxa(columna, fitxa);
 
         return true;
 
@@ -50,8 +49,8 @@ public class Tauler {
         if (tauler[fila][pos] != casella.estaDesocupada()) {
 
             for (int i = fila; i > -1; i--) {
-                if (tauler[ i ][ columna ] == casella.estaDesocupada()) {
-                    tauler[ i ][ columna ] = fitxa;
+                if (tauler[i][columna] == casella.estaDesocupada()) {
+                    tauler[i][columna] = fitxa;
                     return i;
                 }
             }
@@ -66,8 +65,8 @@ public class Tauler {
     private boolean comprovaEnParalelVertical(int fila, int col, char fitxa) {
 
         int contador = 0;
-        //DOWN
-        for (int i = fila; i < tauler.length ; i++) {
+        //ABAIX VV
+        for (int i = fila; i < tauler.length; i++) {
             if (tauler[i][col] == fitxa)
                 contador++;
         }
@@ -75,9 +74,33 @@ public class Tauler {
         if (contador == CONNECTA)
             return true;
 
-        //UP
-        for (int j = fila -1; j != -1 ; j--) {
+        //AMUNT ^^
+        for (int j = fila - 1; j != -1; j--) {
             if (tauler[j][col] == fitxa)
+                contador++;
+        }
+
+        return contador == CONNECTA;
+    }
+
+
+    private boolean comprovaEnParalelHorizontal(int fila, int col, char fitxa) {
+
+        int contador = 0;
+
+        //ESQUERRA <--
+        for (int i = col; i > -1; i--) {
+            if (tauler[fila][i] == fitxa)
+                contador++;
+        }
+
+        if (contador == CONNECTA)
+            return true;
+
+
+        //DRETA -->
+        for (int j = col + 1; j < tauler[0].length; j++) {
+            if (tauler[fila][j] == fitxa)
                 contador++;
         }
 
