@@ -66,7 +66,7 @@ public class Tauler {
     private boolean comprovaEnParalelVertical(int fila, int col, char fitxa) {
 
         int contador = 0;
-
+        //DOWN
         for (int i = fila; i < tauler.length ; i++) {
             if (tauler[i][col] == fitxa)
                 contador++;
@@ -75,7 +75,8 @@ public class Tauler {
         if (contador == CONNECTA)
             return true;
 
-        for (int j = fila; j != -1 ; j--) {
+        //UP
+        for (int j = fila + 1; j != -1 ; j--) {
             if (tauler[j][col] == fitxa)
                 contador++;
         }
