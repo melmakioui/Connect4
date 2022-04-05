@@ -20,4 +20,15 @@ public class Tauler {
         }
     }
 
+
+    public void imprimirTaula(){
+
+        for (int i = 0; i < tauler.length; i++) {
+            for (int j = 0; j < tauler[0].length; j++) {
+                System.out.print(tauler[i][j] + "   ");
+            }
+            System.out.println();
+        }
+    }
+
 }
