@@ -33,6 +33,14 @@ public class Tauler {
 
     
 
+    public boolean comprovaTaula (int columna, char fitxa) {
+
+        int fila = colocaFitxa(columna,fitxa);
+
+        return true;
+
+    }
+
 
     private int colocaFitxa(int pos, char fitxa) {
 
@@ -52,6 +60,27 @@ public class Tauler {
         tauler[fila][pos] = fitxa;
 
         return fila;
+    }
+
+
+    private boolean comprovaEnParalelVertical(int fila, int col, char fitxa) {
+
+        int contador = 0;
+
+        for (int i = fila; i < tauler.length ; i++) {
+            if (tauler[i][col] == fitxa)
+                contador++;
+        }
+
+        if (contador == CONNECTA)
+            return true;
+
+        for (int j = fila; j != -1 ; j--) {
+            if (tauler[j][col] == fitxa)
+                contador++;
+        }
+
+        return contador == CONNECTA;
     }
 
 
