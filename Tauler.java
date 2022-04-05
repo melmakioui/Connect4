@@ -38,7 +38,7 @@ public class Tauler {
         int fila = colocaFitxa(columna, fitxa);
 
         return comprovaEnParalelHorizontal(fila,columna,fitxa)
-                || comprovaEnParalelVertical(fila,columna,fitxa);
+                || comprovaEnParalelVertical(fila,columna,fitxa); //Falten dues en diagonal
 
     }
 

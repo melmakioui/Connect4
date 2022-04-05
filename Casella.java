@@ -11,10 +11,6 @@ public class Casella {
     }
 
 
-    public void estaOcupada(char fitxa){
-
-    }
-
     public char estaDesocupada(){
         return this.desocupada;
     }

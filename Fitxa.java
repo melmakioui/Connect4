@@ -2,7 +2,7 @@ package ProjecteConnecta4;
 
 public class Fitxa {
 
-    private int fitxes = 25;
+    private int fitxes = 25; //NO ES NECESSARI
     private char fitxa;
 
 

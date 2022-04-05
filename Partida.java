@@ -11,7 +11,7 @@ public class Partida {
     private Fitxa fitxa;
 
 
-    public Partida (Jugador jugadorUn, Jugador jugadorDos, Tauler tauler) {
+    public Partida(Jugador jugadorUn, Jugador jugadorDos, Tauler tauler) {
 
         this.jugadorUn = jugadorUn;
         this.jugadorDos = jugadorDos;
@@ -25,9 +25,9 @@ public class Partida {
 
         int posicio;
 
-        while ( !jugadorUn.esGuanyador() && !jugadorDos.esGuanyador() ) {
+        while (!jugadorUn.esGuanyador() && !jugadorDos.esGuanyador()) { //REFACTORITZAR
 
-            posicio = EntradaSortida.triaPosicio(jugadorUn);
+            posicio = EntradaSortida.triaPosicio(jugadorUn); //CONDICIO SI LA COLUMNA ESTA COMPLETA.
             if (comprovaSiEsGuanyador(jugadorUn, posicio)) {
                 tauler.imprimirTaula();
                 continue;
@@ -43,6 +43,7 @@ public class Partida {
                 continue;
             }
 
+
             tauler.imprimirTaula();
 
         }
@@ -52,10 +53,10 @@ public class Partida {
 
     private boolean comprovaSiEsGuanyador(Jugador jugador, int posicio) {
 
-        return tauler.comprovaTauler(posicio, jugador.getFitxa().getCaraFitxa()) && jugador.haGuanyat(true);
+        return tauler.comprovaTauler(posicio, jugador.getFitxa().getCaraFitxa())
+                && jugador.haGuanyat(true);
 
     }
-
 
 
 }

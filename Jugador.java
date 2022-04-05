@@ -34,4 +34,11 @@ public class Jugador {
     }
 
 
+    @Override
+    public String toString() {
+        return "Jugador{" +
+                "nom='" + nom + '\'' +
+                ", fitxa=" + fitxa.getCaraFitxa() +
+                '}';
+    }
 }
