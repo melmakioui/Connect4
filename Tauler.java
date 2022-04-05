@@ -32,11 +32,12 @@ public class Tauler {
     }
 
 
-    public boolean comprovaTaula(int columna, char fitxa) {
+    public boolean comprovaTauler(int columna, char fitxa) {
 
         int fila = colocaFitxa(columna, fitxa);
 
-        return true;
+        return comprovaEnParalelHorizontal(fila,columna,fitxa)
+                || comprovaEnParalelVertical(fila,columna,fitxa);
 
     }
 
