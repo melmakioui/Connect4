@@ -25,6 +25,10 @@ public class Jugador {
         return guanyador;
     }
 
+    public void haGuanyat(boolean guanyador) {
+        this.guanyador = true;
+    }
+
     public Fitxa getFitxa() {
         return fitxa;
     }
