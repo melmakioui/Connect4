@@ -1,5 +1,7 @@
 package ProjecteConnecta4;
 
+import ProjecteConnecta4.entradasortida.EntradaSortida;
+
 public class Partida {
 
     private Jugador jugadorUn;
@@ -14,6 +16,25 @@ public class Partida {
         this.jugadorUn = jugadorUn;
         this.jugadorDos = jugadorDos;
         this.tauler = tauler;
+
+        initPartida(jugadorUn, jugadorDos, tauler);
     }
+
+
+    private void initPartida(Jugador jugadorUn, Jugador jugadorDos, Tauler tauler) {
+
+        int posicio;
+
+        while ( !jugadorUn.esGuanyador() || !jugadorDos.esGuanyador() ) {
+
+            posicio = EntradaSortida.triaPosicio(jugadorUn);
+
+
+
+        }
+
+    }
+
+
 
 }
