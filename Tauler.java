@@ -76,7 +76,7 @@ public class Tauler {
             return true;
 
         //UP
-        for (int j = fila + 1; j != -1 ; j--) {
+        for (int j = fila -1; j != -1 ; j--) {
             if (tauler[j][col] == fitxa)
                 contador++;
         }
