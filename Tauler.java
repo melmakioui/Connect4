@@ -37,8 +37,8 @@ public class Tauler {
 
         int fila = colocaFitxa(columna, fitxa);
 
-        return comprovaEnParalelHorizontal(fila,columna,fitxa)
-                || comprovaEnParalelVertical(fila,columna,fitxa); //Falten dues en diagonal
+        return comprovaEnHorizontal(fila,columna,fitxa)
+                || comprovaEnVertical(fila,columna,fitxa); //Falten dues en diagonal
 
     }
 
@@ -64,7 +64,7 @@ public class Tauler {
     }
 
 
-    private boolean comprovaEnParalelVertical(int fila, int col, char fitxa) {
+    private boolean comprovaEnVertical(int fila, int col, char fitxa) {
 
         int contador = 0;
         //ABAIX VV
@@ -86,14 +86,15 @@ public class Tauler {
     }
 
 
-    private boolean comprovaEnParalelHorizontal(int fila, int col, char fitxa) {
+    private boolean comprovaEnHorizontal(int fila, int col, char fitxa) {
 
         int contador = 0;
 
         //ESQUERRA <--
         for (int i = col; i > -1; i--) {
-            if (tauler[fila][i] == fitxa)
-                contador++;
+            if (tauler[fila][i] != fitxa) {
+                break;
+            }else contador++;
         }
 
         if (contador == CONNECTA)
@@ -102,8 +103,10 @@ public class Tauler {
 
         //DRETA -->
         for (int j = col + 1; j < tauler[0].length; j++) {
-            if (tauler[fila][j] == fitxa)
-                contador++;
+            if (tauler[fila][j] != fitxa){
+                break;
+            } else contador++;
+
         }
 
         return contador == CONNECTA;

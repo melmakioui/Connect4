@@ -13,6 +13,7 @@ public class EntradaSortida {
 
         Scanner entrada = new Scanner(System.in);
 
+        System.out.println();
         System.out.println("TIRA " + jugador.getNom() );
         int posicio = entrada.nextInt();
 

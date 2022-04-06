@@ -25,10 +25,10 @@ public class Partida {
 
         int posicio;
 
-        while (!jugadorUn.esGuanyador() && !jugadorDos.esGuanyador()) { //REFACTORITZAR
+        while (!jugadorUn.esGuanyador() && !jugadorDos.esGuanyador()) {
 
-            posicio = EntradaSortida.triaPosicio(jugadorUn); //CONDICIO SI LA COLUMNA ESTA COMPLETA.
-            if (comprovaSiEsGuanyador(jugadorUn, posicio)) {
+            posicio = EntradaSortida.triaPosicio(jugadorUn);
+            if (comprovaSiEsGuanyador(jugadorUn, posicio)) { //REFACTORITZAR EN UN METODE
                 tauler.imprimirTaula();
                 continue;
             }
@@ -49,6 +49,7 @@ public class Partida {
         }
 
     }
+
 
 
     private boolean comprovaSiEsGuanyador(Jugador jugador, int posicio) {

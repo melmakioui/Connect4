@@ -2,7 +2,7 @@ package ProjecteConnecta4;
 
 public class Fitxa {
 
-    private int fitxes = 25; //NO ES NECESSARI
+    //private int fitxes = 25; //NO ES NECESSARI
     private char fitxa;
 
 
@@ -11,13 +11,13 @@ public class Fitxa {
     }
 
 
-    public int getFitxes() {
+    /*public int getFitxes() {
         return fitxes;
-    }
+    }*/
 
-    public void restaFitxa(){
+    /*public void restaFitxa(){
         this.fitxes -= 1;
-    }
+    }*/
 
     public char getCaraFitxa() {
         return fitxa;
