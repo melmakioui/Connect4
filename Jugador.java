@@ -4,14 +4,14 @@ public class Jugador {
 
     private String nom;
     private boolean guanyador = false;
-    private Fitxa fitxa;
+    private char fitxa;
 
 
     public Jugador(String nom) {
         this.nom = nom;
     }
 
-    public Jugador(String nom, Fitxa fitxa) {
+    public Jugador(String nom, char fitxa) {
         this.nom = nom;
         this.fitxa = fitxa;
     }
@@ -29,16 +29,8 @@ public class Jugador {
         return this.guanyador = true;
     }
 
-    public Fitxa getFitxa() {
+    public char getFitxa() {
         return fitxa;
     }
 
-
-    @Override
-    public String toString() {
-        return "Jugador{" +
-                "nom='" + nom + '\'' +
-                ", fitxa=" + fitxa.getCaraFitxa() +
-                '}';
-    }
 }

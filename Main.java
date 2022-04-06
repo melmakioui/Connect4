@@ -5,11 +5,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Fitxa fitxaJugadorUn = new Fitxa('X');
-        Jugador jugadorUn = new Jugador("Player 1", fitxaJugadorUn);
+        Jugador jugadorUn = new Jugador("Player 1", 'X');
 
-        Fitxa fitxaJugadorDos = new Fitxa('O');
-        Jugador jugadorDos = new Jugador("Player 2", fitxaJugadorDos);
+        Jugador jugadorDos = new Jugador("Player 2", 'O');
 
         Tauler tauler = new Tauler();
 

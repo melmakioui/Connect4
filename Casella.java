@@ -7,7 +7,6 @@ public class Casella {
 
     public Casella(){
 
-
     }
 
 

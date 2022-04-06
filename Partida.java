@@ -6,9 +6,7 @@ public class Partida {
 
     private Jugador jugadorUn;
     private Jugador jugadorDos;
-    private Casella casella;
     private Tauler tauler;
-    private Fitxa fitxa;
 
 
     public Partida(Jugador jugadorUn, Jugador jugadorDos, Tauler tauler) {
@@ -54,7 +52,7 @@ public class Partida {
 
     private boolean comprovaSiEsGuanyador(Jugador jugador, int posicio) {
 
-        return tauler.comprovaTauler(posicio, jugador.getFitxa().getCaraFitxa())
+        return tauler.comprovaTauler(posicio, jugador.getFitxa())
                 && jugador.haGuanyat(true);
 
     }
