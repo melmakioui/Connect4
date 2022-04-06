@@ -4,7 +4,7 @@ public class Tauler {
 
     private char[][] tauler;
     private static final int CONNECTA = 4;
-    private static final char CASELLA_BUIDA = 'X';
+    private static final char CASELLA_BUIDA = '*';
 
     public Tauler() {
         this.tauler = new char[7][8];
