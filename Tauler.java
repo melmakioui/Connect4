@@ -3,13 +3,11 @@ package ProjecteConnecta4;
 public class Tauler {
 
     private char[][] tauler;
-    private Casella casella;
     private static final int CONNECTA = 4;
     private static final char CASELLA_BUIDA = 'X';
 
     public Tauler() {
         this.tauler = new char[7][8];
-        this.casella = new Casella();
 
         initTablero();
     }
@@ -22,16 +20,6 @@ public class Tauler {
         }
     }
 
-
-    public void imprimirTaula() {
-
-        for (int i = 0; i < tauler.length; i++) {
-            for (int j = 0; j < tauler[0].length; j++) {
-                System.out.print(tauler[i][j] + "   ");
-            }
-            System.out.println();
-        }
-    }
 
 
     public boolean comprovaTauler(int columna, char fitxa) {
@@ -113,5 +101,16 @@ public class Tauler {
         return contador == CONNECTA;
     }
 
+
+
+    public void imprimirTaula() {
+
+        for (int i = 0; i < tauler.length; i++) {
+            for (int j = 0; j < tauler[0].length; j++) {
+                System.out.print(tauler[i][j] + "   ");
+            }
+            System.out.println();
+        }
+    }
 
 }
