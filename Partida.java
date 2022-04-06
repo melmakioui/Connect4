@@ -21,40 +21,39 @@ public class Partida {
 
     private void initPartida(Jugador jugadorUn, Jugador jugadorDos, Tauler tauler) {
 
-        int posicio;
+        int posicio = 0;
 
         while (!jugadorUn.esGuanyador() && !jugadorDos.esGuanyador()) {
 
-            posicio = EntradaSortida.triaPosicio(jugadorUn);
-            if (comprovaSiEsGuanyador(jugadorUn, posicio)) { //REFACTORITZAR EN UN METODE
+
+            if (esTurnDeJugador(jugadorUn, posicio)) {
                 tauler.imprimirTaula();
                 continue;
             }
 
-
             tauler.imprimirTaula();
 
-
-            posicio = EntradaSortida.triaPosicio(jugadorDos);
-            if (comprovaSiEsGuanyador(jugadorDos, posicio)) {
+            if (esTurnDeJugador(jugadorDos, posicio)) {
                 tauler.imprimirTaula();
-                continue;
             }
 
-
             tauler.imprimirTaula();
+
 
         }
 
     }
 
 
+    private boolean esTurnDeJugador(Jugador jugador, int posicio) {
 
-    private boolean comprovaSiEsGuanyador(Jugador jugador, int posicio) {
+        posicio = EntradaSortida.triaPosicio(jugador);
 
-        return tauler.comprovaTauler(posicio, jugador.getFitxa())
-                && jugador.haGuanyat(true);
+        if (tauler.comprovaTauler ( posicio, jugador.getFitxa() )) {
+            return jugador.haGuanyat(true);
+        }
 
+        return false;
     }
 
 
