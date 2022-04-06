@@ -4,7 +4,7 @@ public class Tauler {
 
     private char[][] tauler;
     private static final int CONNECTA = 4;
-    private static final char CASELLA_BUIDA = 'X';
+    private static final char CASELLA_BUIDA = '*';
 
     public Tauler() {
         this.tauler = new char[7][8];
@@ -26,8 +26,9 @@ public class Tauler {
 
         int fila = colocaFitxa(columna, fitxa);
 
-        return comprovaEnHorizontal(fila,columna,fitxa)
-                || comprovaEnVertical(fila,columna,fitxa); //Falten dues en diagonal
+        return  comprovaEnHorizontal(fila,columna,fitxa)
+                || comprovaEnVertical(fila,columna,fitxa)
+                || comprovaEnDiagonalDreta(fila, columna, fitxa); //Falten dues en diagonal
 
     }
 
@@ -100,6 +101,51 @@ public class Tauler {
 
         return contador == CONNECTA;
     }
+
+
+    private boolean comprovaEnDiagonalDreta(int fila, int col, char fitxa) {
+
+        int contador = 0;
+
+
+        for (int i = fila; i > -1; i--) {
+            for (int j = col; j < tauler[0].length; j++) {
+
+                if (tauler[i][j] != fitxa) {
+                    i = 0;
+                    break; //metodo nuevo
+                } else {
+                    i--;
+                    contador++;
+                }
+            }
+        }
+
+        if (contador == CONNECTA) {
+            return true;
+        }
+
+        if (fila == tauler.length - 1) {
+            return false;
+        }
+
+        //Array out of bounds
+        for (int i = fila; i < tauler.length; i++) {
+            for (int j = col - 1; j < tauler[0].length && col != -1; j--) {
+
+                if (tauler[i][j] != fitxa) {
+                    i = tauler.length;
+                    break;
+                } else {
+                    i++;
+                    contador++;
+                }
+            }
+        }
+
+        return contador == CONNECTA;
+    }
+
 
 
 
