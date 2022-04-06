@@ -5,6 +5,7 @@ public class Tauler {
     private char[][] tauler;
     private Casella casella;
     private static final int CONNECTA = 4;
+    private static final char CASELLA_BUIDA = 'X';
 
     public Tauler() {
         this.tauler = new char[7][8];
@@ -16,7 +17,7 @@ public class Tauler {
     private void initTablero() {
         for (int i = 0; i < tauler.length; i++) {
             for (int j = 0; j < tauler[0].length; j++) {
-                tauler[i][j] = casella.estaDesocupada();
+                tauler[i][j] = CASELLA_BUIDA;
             }
         }
     }
@@ -48,10 +49,10 @@ public class Tauler {
         int fila = tauler.length - 1;
         int columna = pos;
 
-        if (tauler[fila][pos] != casella.estaDesocupada()) {
+        if (tauler[fila][pos] != CASELLA_BUIDA) {
 
             for (int i = fila; i > -1; i--) {
-                if (tauler[i][columna] == casella.estaDesocupada()) {
+                if (tauler[i][columna] == CASELLA_BUIDA) {
                     tauler[i][columna] = fitxa;
                     return i;
                 }
