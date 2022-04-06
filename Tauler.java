@@ -21,13 +21,12 @@ public class Tauler {
     }
 
 
-
     public boolean comprovaTauler(int columna, char fitxa) {
 
         int fila = colocaFitxa(columna, fitxa);
 
-        return  comprovaEnHorizontal(fila,columna,fitxa)
-                || comprovaEnVertical(fila,columna,fitxa)
+        return comprovaEnHorizontal(fila, columna, fitxa)
+                || comprovaEnVertical(fila, columna, fitxa)
                 || comprovaEnDiagonalDreta(fila, columna, fitxa); //Falten dues en diagonal
 
     }
@@ -82,9 +81,9 @@ public class Tauler {
 
         //ESQUERRA <--
         for (int i = col; i > -1; i--) {
-            if (tauler[fila][i] != fitxa) {
+            if (tauler[fila][i] != fitxa) { //REFACTORITZAR
                 break;
-            }else contador++;
+            } else contador++;
         }
 
         if (contador == CONNECTA)
@@ -93,7 +92,7 @@ public class Tauler {
 
         //DRETA -->
         for (int j = col + 1; j < tauler[0].length; j++) {
-            if (tauler[fila][j] != fitxa){
+            if (tauler[fila][j] != fitxa) {
                 break;
             } else contador++;
 
@@ -112,6 +111,7 @@ public class Tauler {
             for (int j = col; j < tauler[0].length; j++) {
 
                 if (tauler[i][j] != fitxa) {
+                    contador = 0;
                     i = 0;
                     break; //metodo nuevo
                 } else {
@@ -125,16 +125,16 @@ public class Tauler {
             return true;
         }
 
-        if (fila == tauler.length - 1) {
+        if (fila == tauler.length - 1 || col == 0) {
             return false;
         }
 
         //Array out of bounds
-        for (int i = fila; i < tauler.length; i++) {
-            for (int j = col - 1; j < tauler[0].length && col != -1; j--) {
+        for (int i = fila; i < tauler.length; ) {
+            for (int j = col; j > 0 ; j--) {
 
                 if (tauler[i][j] != fitxa) {
-                    i = tauler.length;
+                    i = tauler.length - 1;
                     break;
                 } else {
                     i++;
@@ -145,8 +145,6 @@ public class Tauler {
 
         return contador == CONNECTA;
     }
-
-
 
 
     public void imprimirTaula() {
