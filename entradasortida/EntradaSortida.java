@@ -22,7 +22,7 @@ public class EntradaSortida {
             posicio = entrada.nextInt();
         }
 
-        return posicio;
+        return posicio -1;
     }
 
 }

@@ -4,46 +4,36 @@ import ProjecteConnecta4.entradasortida.EntradaSortida;
 
 public class Partida {
 
-    private Jugador jugadorUn;
-    private Jugador jugadorDos;
+    private Jugador[] jugadors;
     private Tauler tauler;
 
 
-    public Partida(Jugador jugadorUn, Jugador jugadorDos, Tauler tauler) {
+    public Partida(Jugador[] jugadors, Tauler tauler) {
 
-        this.jugadorUn = jugadorUn;
-        this.jugadorDos = jugadorDos;
+        this.jugadors = jugadors;
         this.tauler = tauler;
 
-        initPartida(jugadorUn, jugadorDos, tauler);
+        initPartida(jugadors, tauler);
     }
 
 
-    private void initPartida(Jugador jugadorUn, Jugador jugadorDos, Tauler tauler) {
+    private void initPartida(Jugador[] jugadors, Tauler tauler) {
 
         int posicio;
+        int torn = 0;
 
-        while (!jugadorUn.esGuanyador() && !jugadorDos.esGuanyador()) {
+        while ( !jugadors [ torn ] .esGuanyador() ) {
 
-            posicio = EntradaSortida.triaPosicio(jugadorUn);
-            if (comprovaSiEsGuanyador(jugadorUn, posicio)) { //REFACTORITZAR EN UN METODE
+            posicio = EntradaSortida.triaPosicio( jugadors [ torn ] );
+
+            if ( comprovaSiEsGuanyador( jugadors [ torn ], posicio) ) { //REFACTORITZAR EN UN METODE
                 tauler.imprimirTaula();
                 continue;
             }
 
-
             tauler.imprimirTaula();
 
-
-            posicio = EntradaSortida.triaPosicio(jugadorDos);
-            if (comprovaSiEsGuanyador(jugadorDos, posicio)) {
-                tauler.imprimirTaula();
-                continue;
-            }
-
-
-            tauler.imprimirTaula();
-
+            //  % --> Torna enrera;
         }
 
     }

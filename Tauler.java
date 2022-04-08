@@ -37,10 +37,10 @@ public class Tauler {
         int fila = tauler.length - 1;
         int columna = pos;
 
-        if (tauler[fila][pos] != CASELLA_BUIDA) {
+        if (!estaBuida(fila,columna)) { //SI POSICIO ESTA OCUPADA -- METODE
 
             for (int i = fila; i > -1; i--) {
-                if (tauler[i][columna] == CASELLA_BUIDA) {
+                if (estaBuida(i,columna)) {
                     tauler[i][columna] = fitxa;
                     return i;
                 }
@@ -50,6 +50,11 @@ public class Tauler {
         tauler[fila][pos] = fitxa;
 
         return fila;
+    }
+
+
+    private boolean estaBuida(int fila, int columna) {
+        return tauler[fila][columna] == CASELLA_BUIDA;
     }
 
 
