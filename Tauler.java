@@ -7,7 +7,7 @@ public class Tauler {
     private static final char CASELLA_BUIDA = '_';
 
     public Tauler() {
-        this.tauler = new char[7][8];
+        this.tauler = new char[8][8];
 
         initTablero();
     }
@@ -21,13 +21,13 @@ public class Tauler {
     }
 
 
-
     public boolean comprovaTauler(int columna, char fitxa) {
 
         int fila = colocaFitxa(columna, fitxa);
 
-        return comprovaEnHorizontal(fila,columna,fitxa)
-                || comprovaEnVertical(fila,columna,fitxa); //Falten dues en diagonal
+        return comprovaEnHorizontal(fila, columna, fitxa)
+                || comprovaEnVertical(fila, columna, fitxa)
+                || comprovaEnDiagonalDreta(fila, columna, fitxa);
 
     }
 
@@ -75,35 +75,70 @@ public class Tauler {
 
         int contador = 0;
 
-        //ESQUERRA <--
         for (int i = col; i > -1; i--) {
             if (tauler[fila][i] != fitxa) {
                 break;
-            }else contador++;
+            }
+            contador++;
         }
 
-        if (contador == CONNECTA)
-            return true;
-
-
-        //DRETA -->
         for (int j = col + 1; j < tauler[0].length; j++) {
-            if (tauler[fila][j] != fitxa){
+            if (tauler[fila][j] != fitxa) {
                 break;
-            } else contador++;
-
+            }
+            contador++;
         }
 
-        return contador == CONNECTA;
+        return contador >= CONNECTA;
     }
 
+
+    private boolean comprovaEnDiagonalDreta(int fila, int col, char fitxa) {
+
+        int contador = 0;
+        int up = fila;
+        int down = fila;
+//izquieda - derecha diagonal
+
+        while (up != 0) {
+
+            for (int j = col; j < tauler[0].length && up != 0; j++) {
+
+                if (tauler[up][j] != fitxa) {
+                    break;
+                }
+
+                contador++;
+                up--;
+            }
+            break;
+        }
+
+
+        while (down != tauler.length - 1) {
+
+            for (int j = col ; j > -1 && down != tauler.length -1 ; j--) {
+
+                if (tauler[down][j] != fitxa) {
+                    break;
+                }
+
+                contador++;
+                down++;
+            }
+            break;
+        }
+
+
+        return contador >= CONNECTA;
+    }
 
 
     public void imprimirTaula() {
 
         for (int i = 0; i < tauler.length; i++) {
             for (int j = 0; j < tauler[0].length; j++) {
-                System.out.print(tauler[i][j] + "   ");
+                System.out.print("|" + tauler[i][j] + "|" + " ");
             }
             System.out.println();
         }

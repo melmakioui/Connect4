@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class EntradaSortida {
 
 
-    private static final int MAXIM_FILES = 7;
+    private static final int MAXIM_COLUMNES = 8;
 
     public static int triaPosicio(Jugador jugador) {
 
@@ -15,14 +15,15 @@ public class EntradaSortida {
 
         System.out.println();
         System.out.println("TIRA " + jugador.getNom() );
+        System.out.print("> ");
         int posicio = entrada.nextInt();
 
-        while (posicio > MAXIM_FILES || posicio < 0) {
+        while (posicio < 0 || posicio > MAXIM_COLUMNES) {
             System.out.println("TRIA UNA POICIO CORRECTAMENT...");
             posicio = entrada.nextInt();
         }
 
-        return posicio;
+        return posicio -1;
     }
 
 }
