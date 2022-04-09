@@ -4,7 +4,7 @@ public class Tauler {
 
     private char[][] tauler;
     private static final int CONNECTA = 4;
-    private static final char CASELLA_BUIDA = '*';
+    private static final char CASELLA_BUIDA = '_';
 
     public Tauler() {
         this.tauler = new char[7][8];
@@ -56,22 +56,18 @@ public class Tauler {
     private boolean comprovaEnVertical(int fila, int col, char fitxa) {
 
         int contador = 0;
-        //ABAIX VV
+
         for (int i = fila; i < tauler.length; i++) {
             if (tauler[i][col] == fitxa)
                 contador++;
         }
 
-        if (contador == CONNECTA)
-            return true;
-
-        //AMUNT ^^
         for (int j = fila - 1; j != -1; j--) {
             if (tauler[j][col] == fitxa)
                 contador++;
         }
 
-        return contador == CONNECTA;
+        return contador >= CONNECTA;
     }
 
 
