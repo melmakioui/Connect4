@@ -1,9 +1,11 @@
 package ProjecteConnecta4;
 
+import ProjecteConnecta4.entradasortida.EntradaSortida;
+
 public class Tauler {
 
     private char[][] tauler;
-    private static final int CONNECTA = 4;
+    private final static int CONNECTA = 4;
     private static final char CASELLA_BUIDA = '_';
     private static int CONTADOR_FITXES = 0;
 
@@ -12,6 +14,7 @@ public class Tauler {
 
         initTablero();
     }
+
 
     private void initTablero() {
         for (int i = 0; i < tauler.length; i++) {
@@ -24,34 +27,30 @@ public class Tauler {
 
     public boolean comprovaTauler(int columna, char fitxa) {
 
-        int fila = colocaFitxa(columna, fitxa);
+        colocaFitxa(columna, fitxa);
 
-        return comprovaEnHorizontal(fila, columna, fitxa)
-                || comprovaEnVertical(fila, columna, fitxa)
+        return comprovaEnHorizontal(fitxa)
+                || comprovaEnVertical(fitxa)
                 || comprovaEnDiagonalDreta(fitxa)
                 || comprovaEnDiagonalEsquerra(fitxa);
 
     }
 
 
-    private int colocaFitxa(int col, char fitxa) {
+    private void colocaFitxa(int columna, char fitxa) {
 
         int fila = tauler.length - 1;
-        int columna = col;
 
-        if (estaOcupada(tauler[fila][col])) {
+        if (estaOcupada(tauler[fila][columna])) {
 
             for (int i = fila; i > -1; i--) {
                 if (!estaOcupada(tauler[i][columna])) {
                     tauler[i][columna] = fitxa;
-                    return i;
+                    break;
                 }
             }
-        }
+        } else tauler[fila][columna] = fitxa;
 
-        tauler[fila][col] = fitxa;
-
-        return fila;
     }
 
 
@@ -60,48 +59,11 @@ public class Tauler {
     }
 
 
-    private boolean comprovaEnVertical(int fila, int columna, char fitxa) {
+    private boolean comprovaEnVertical(char fitxa) {
 
-        int contador = 0;
-
-        for (int i = fila; i < tauler.length; i++) {
-            if (!esIgual(tauler[i][columna], fitxa)) {
-                break;
-            }
-            contador++;
-        }
-
-        return contador >= CONNECTA;
-    }
-
-
-    private boolean comprovaEnHorizontal(int fila, int columna, char fitxa) {
-
-        int contador = 0;
-
-        for (int i = columna; i > -1; i--) {
-            if (!esIgual(tauler[fila][i], fitxa)) {
-                break;
-            }
-            contador++;
-        }
-
-        for (int j = columna + 1; j < tauler[0].length; j++) {
-            if (!esIgual(tauler[fila][j], fitxa)) {
-                break;
-            }
-            contador++;
-        }
-
-        return contador >= CONNECTA;
-    }
-
-
-    private boolean comprovaEnDiagonalDreta(char fitxa) {
-
-        for (int fila = 3; fila < tauler.length; fila++) {
-            for (int col = 0; col < tauler[0].length - 3; col++) {
-                if (esDiagonal(fila, col, fitxa)) {
+        for (int fila = 2; fila > -1; fila--) {
+            for (int col = 0; col < tauler[0].length; col++) {
+                if (connectaVertical(fila, col, fitxa)) {
                     return true;
                 }
             }
@@ -110,12 +72,69 @@ public class Tauler {
     }
 
 
-    private boolean esDiagonal(int fila, int columna, char fitxa) {
+    private boolean connectaVertical(int fila, int columna, char fitxa) {
 
         CONTADOR_FITXES = 0;
 
         for (int i = 0; i < tauler.length - 2; i++) {
-            if (tauler[fila - i][columna + i] == fitxa) {
+            if (esMateixaFitxa(tauler[fila + i][columna], fitxa)) {
+                CONTADOR_FITXES++;
+            }
+        }
+        return CONTADOR_FITXES == CONNECTA;
+    }
+
+
+    private boolean comprovaEnHorizontal(char fitxa) {
+
+        for (int fila = 0; fila < tauler.length; fila++) {
+            for (int col = 0; col < tauler.length - 2; col++) {
+                if (connectaHoritzontal(fila, col, fitxa)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    private boolean connectaHoritzontal(int fila, int columna, char fitxa) {
+
+        CONTADOR_FITXES = 0;
+
+        for (int i = 0; i < tauler.length - 1; i++) {
+            if (esMateixaFitxa(tauler[fila][columna + i], fitxa)) {
+                CONTADOR_FITXES++;
+            }
+        }
+
+        return CONTADOR_FITXES == CONNECTA;
+
+    }
+
+
+
+    private boolean comprovaEnDiagonalDreta(char fitxa) {
+
+        for (int fila = 3; fila < tauler.length; fila++) {
+            for (int col = 0; col < tauler[0].length - 3; col++) {
+                if (connectaDiagonalDreta(fila, col, fitxa)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+
+    private boolean connectaDiagonalDreta(int fila, int columna, char fitxa) {
+
+        CONTADOR_FITXES = 0;
+
+        for (int i = 0; i < tauler.length - 2; i++) {
+            if (esMateixaFitxa(tauler[fila - i][columna + i], fitxa)) {
                 CONTADOR_FITXES++;
             }
         }
@@ -128,19 +147,40 @@ public class Tauler {
 
     private boolean comprovaEnDiagonalEsquerra(char fitxa) {
 
-
+        for (int fila = 3; fila < tauler.length; fila++) {
+            for (int col = tauler[0].length - 1; col > tauler[0].length - 5; col--) {
+                if (connectaDiagonalEsquerra(fila, col, fitxa)) {
+                    return true;
+                }
+            }
+        }
 
         return false;
     }
 
 
-    private boolean esIgual(char casella, char fitxa) {
+
+    private boolean connectaDiagonalEsquerra(int fila, int columna, char fitxa) {
+
+        CONTADOR_FITXES = 0;
+
+        for (int i = 0; i < tauler.length - 2; i++) {
+            if (esMateixaFitxa(tauler[fila - i][columna - i], fitxa)) {
+                CONTADOR_FITXES++;
+            }
+        }
+        return CONTADOR_FITXES == CONNECTA;
+    }
+
+
+
+
+    private boolean esMateixaFitxa(char casella, char fitxa) {
         return casella == fitxa;
     }
 
 
     public void imprimirTaula() {
-
 
         for (int i = 0; i < tauler.length; i++) {
             for (int j = 0; j < tauler[0].length; j++) {
@@ -150,5 +190,14 @@ public class Tauler {
         }
     }
 
+
+    //Getters
+    public char[][] getTauler() {
+        return tauler;
+    }
+
+    public static char getCasellaBuida() {
+        return CASELLA_BUIDA;
+    }
 }
 
