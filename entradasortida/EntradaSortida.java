@@ -19,7 +19,8 @@ public class EntradaSortida {
         int posicio = entrada.nextInt();
 
         while (posicio < 0 || posicio > MAXIM_COLUMNES) {
-            System.out.println("TRIA UNA POICIO CORRECTAMENT...");
+            System.out.println("TRIA UNA POSICIO CORRECTAMENT...");
+            System.out.print("> ");
             posicio = entrada.nextInt();
         }
 
