@@ -28,6 +28,10 @@ public class EntradaSortida {
         return posicio -1;
     }
 
+    public static void mostraColumnaPlena(){
+        System.out.println("COLUMNA PLENA!!");
+    }
+
 
 
 
