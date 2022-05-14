@@ -6,11 +6,6 @@ public class Jugador {
     private boolean guanyador = false;
     private char fitxa;
 
-
-    public Jugador(String nom) {
-        this.nom = nom;
-    }
-
     public Jugador(String nom, char fitxa) {
         this.nom = nom;
         this.fitxa = fitxa;
@@ -26,7 +21,7 @@ public class Jugador {
     }
 
     public boolean haGuanyat(boolean guanyador) {
-        return this.guanyador = true;
+        return this.guanyador = guanyador;
     }
 
     public char getFitxa() {

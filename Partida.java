@@ -8,7 +8,7 @@ public class Partida {
     private Tauler tauler;
 
 
-    public Partida( Jugador[] jugadors, Tauler tauler) {
+    public Partida(Jugador[] jugadors, Tauler tauler) {
 
         this.jugadors = jugadors;
         this.tauler = tauler;
@@ -19,33 +19,37 @@ public class Partida {
 
     private void initPartida(Jugador[] jugadors, Tauler tauler) {
 
-        int posicio;
+        int posicio = 0;
         int torn = 0;
+        tauler.mostraTaula();
 
-        while (!jugadors[torn].esGuanyador()) {
-
+        do {
             posicio = EntradaSortida.triaPosicio(jugadors[torn]);
-            if (comprovaSiEsGuanyador(jugadors[torn], posicio)){
-                tauler.imprimirTaula();
-                continue;
-            }
 
-            tauler.imprimirTaula();
+            if (esColumnaNoValida(posicio, torn))
+                continue;
+
+            tauler.mostraTaula();
+
+            if (jugadors[torn].haGuanyat(esGuanyador(jugadors[torn])))
+                continue;
 
             torn++;
-            if (torn == jugadors.length) {
-                torn %= jugadors.length;
-            }
-        }
+            torn = torn % jugadors.length;
+
+        } while (!jugadors[torn].esGuanyador());
+
+
+        System.out.println("\n****" + jugadors[torn].getNom() + " HA GUANYAT!!" + "****");
 
     }
 
+    private boolean esColumnaNoValida(int posicio, int torn) {
+        return tauler.colocaFitxa(posicio, jugadors[torn].getFitxa());
+    }
 
-    private boolean comprovaSiEsGuanyador(Jugador jugador, int posicio) {
-
-        return tauler.comprovaTauler(posicio, jugador.getFitxa())
-                && jugador.haGuanyat(true);
-
+    private boolean esGuanyador(Jugador jugador) {
+        return tauler.comprovaTauler(jugador.getFitxa());
     }
 
 
